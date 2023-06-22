@@ -11,6 +11,7 @@ Directories in this repository includes
 -> 0x00-hello_world
 -> 0x01-variables_if_else_while
 -> 0x02-functions_nested_loops
+-> 0x03-debugging
       This directory covers the hello world project and some implementations using shell scripting 
 ~~~
 The use exploration C is the understanding of System architecture
