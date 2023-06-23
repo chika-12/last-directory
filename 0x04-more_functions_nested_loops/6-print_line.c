@@ -17,7 +17,7 @@ void print_line(int n)
 	{
 		for (index = 1; index <= n; index++)
 		{
-			_putchar(45);
+			_putchar(95);
 		}
 		_putchar(10);
 	}
