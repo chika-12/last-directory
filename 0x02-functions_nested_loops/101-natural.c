@@ -1,6 +1,6 @@
 #include <stdio.h>
 /**
- * main - prints multiples of 3 and 5 
+ * main - prints multiples of 3 and 5
  * in 1024
  *
  * Return: Multiples of 3 and 5 in 1024
