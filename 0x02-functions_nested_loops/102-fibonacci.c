@@ -8,14 +8,14 @@ int main(void)
 {
 	int n = 50;
 	int num;
-	long long int fib;
-	long long int num2 = 0;
-	long long int num3 = 1;
+	long int fib;
+	long int num2 = 0;
+	long int num3 = 1;
 
 	for (num = 1; num <= 50; num++)
 	{
 		fib = num2 + num3;
-		printf("%lld", fib);
+		printf("%ld", fib);
 		if (num != 50)
 		{
 			printf(", ");
