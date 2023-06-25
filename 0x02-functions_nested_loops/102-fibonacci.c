@@ -6,7 +6,6 @@
  */
 int main(void)
 {
-	int n = 50;
 	int num;
 	long int fib;
 	long int num2 = 0;
