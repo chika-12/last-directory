@@ -23,4 +23,5 @@ int main(void)
 		num3 = fib;
 	}
 	printf("\n");
+	return (0);
 }
