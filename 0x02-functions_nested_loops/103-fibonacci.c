@@ -7,22 +7,22 @@
  */
 int main(void)
 {
-	double num;
-	double num1 = 0;
-	double num2 = 1;
-	double fib;
-	double running_sum = 0;
+	long int num;
+	long int num1 = 0;
+	long int num2 = 1;
+	long int fib;
+	long int running_sum = 0;
 
 	for (num = 1; fib <= 4000000; num++)
 	{
 		fib = num1 + num2;
-		if (fmod(fib, 2) == 0)
+		if (fib % 2 == 0)
 		{
 			running_sum += fib;
 		}
 		num1 = num2;
 		num2 = fib;
 	}
-	printf("%f\n", running_sum);
+	printf("%ld\n", running_sum);
 	return (0);
 }
