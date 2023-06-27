@@ -2,8 +2,8 @@
 #include "main.h"
 #include <string.h>
 /**
- * _strcpy - copies src to dest 
- * @:dest: parameter
+ * _strcpy - copies src to dest
+ * @dest: parameter
  * @src: parameter
  * Return: 0
  */
