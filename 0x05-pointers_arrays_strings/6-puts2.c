@@ -11,8 +11,12 @@ void puts2(char *str)
 {
 	int num;
 
-	for (num = 0; num <= str[num]; num += 1)
+	for (num = 0; num <= str[num]; num += 2)
 	{
+		if (str[num] == '\0')
+		{
+			_putchar(10);
+		}
 		printf("%c", str[num]);
 	}
 	printf("\n");
