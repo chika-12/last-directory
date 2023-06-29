@@ -24,7 +24,11 @@ char *_strncpy(char *dest, char *src, int n)
 		}
 		else
 		{
-			dest[num] = '\0';
+			while (num < n)
+			{
+				dest[num] = '\0';
+				num++;
+			}
 			break;
 		}
 	}
