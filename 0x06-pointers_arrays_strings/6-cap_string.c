@@ -25,7 +25,7 @@ char *cap_string(char *str)
 		}
 		else if (str[i] >= 97 && str[i] <= 122 && cap_char)
 		{
-			if(str[i] == '\t')
+			if (str[i] == '\t')
 			{
 				str[i] = ' ';
 			}
