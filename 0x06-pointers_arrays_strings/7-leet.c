@@ -7,20 +7,23 @@
  */
 char *leet(char *str)
 {
-	int num;
+	int index;
+	int i;
+	int alph_low[5] = {97, 101, 111, 116, 108};
+	int alph_upp[5] = {65, 69, 79, 84, 76};
+	int num[5] = {52, 51, 48, 55, 49};
 
-	for (num = 0; str[num] != '\0'; num++)
+	for (i = 0; str[i] != '\0'; i++)
 	{
-		if (str[num] == 'a' || str[num] == 'A')
-			str[num] = '4';
-		else if (str[num] == 'e' || str[num] == 'E')
-			str[num] = '3';
-		else if (str[num] == 'o' || str[num] == 'O')
-			str[num] = '0';
-		else if (str[num] == 't' || str[num] == 'T')
-			str[num] = '7';
-		else if (str[num] == 'l' || str[num] == 'L')
-			str[num] = '1';
+		for (index = 0; index < 5; index++)
+		{
+			if (str[i] == alph_low[index] || str[i] == alph_upp[index])
+			{
+				str[i] = num[index];
+				break;
+			}
+
+		}
 	}
 	return (str);
 }
