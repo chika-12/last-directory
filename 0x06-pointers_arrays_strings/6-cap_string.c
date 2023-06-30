@@ -23,26 +23,25 @@ char *cap_string(char *str)
 		{
 			cap_char = 1;
 		}
-		else if (islower(str[i]) && cap_char)
+		else if (str[i] >= 97 && str[i] <= 122 && cap_char)
 		{
-			str[i] = toupper(str[i]);
-			cap_char = 0;
+			if(str[i] == '\t')
+			{
+				str[i] = ' ';
+			}
+			else
+			{
+				str[i] = str[i] - 32;
+				cap_char = 0;
+			}
 		}
-		else if (isupper(str[i]) && !cap_char)
+		else if (str[i] >= 65 && str[i] <= 90  && !cap_char)
 		{
-			str[i] = tolower(str[i]);
+			str[i] = str[i] + 32;
 		}
 		else
 		{
 			cap_char = 0;
-		}
-		if (isspace(str[i]) || ispunct(str[i]))
-		{
-			cap_char = 0;
-			while (isspace(str[i + 1]) || ispunct(str[i + 1]))
-			{
-				i++;
-			}
 		}
 
 	}
