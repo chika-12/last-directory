@@ -16,6 +16,7 @@ Directories in this repository includes
 -> 0x05-pointers_arrays_strings
 -> 0x06-pointers_arrays_strings
 -> 0x07-pointers_arrays_strings
+-> 0x08-recursion
       This directory covers the hello world project and some implementations using shell scripting 
 ~~~
 The use exploration C is the understanding of System architecture
