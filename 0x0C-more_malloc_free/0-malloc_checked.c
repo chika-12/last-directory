@@ -11,10 +11,6 @@ void *malloc_checked(unsigned int b)
 {
 	int *arr;
 
-	if (b == 0)
-	{
-		return (NULL);
-	}
 	arr = malloc(sizeof(b));
 
 	if (arr == NULL)
