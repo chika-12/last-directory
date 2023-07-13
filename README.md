@@ -19,7 +19,7 @@ Directories in this repository includes
 0x08-recursion
 0x09-static_libraries
 0x0A-argc_argv.
-      This directory covers the hello world project and some implementations using shell scripting 
+      This directory covers the hello world project and some implementations using shell scripting. Given by alx.
 ~~~
 The use exploration C is the understanding of System architecture
 ~~~
