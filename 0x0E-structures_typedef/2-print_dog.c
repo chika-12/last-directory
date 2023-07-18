@@ -3,7 +3,7 @@
 #include "dog.h"
 
 /**
- * print_dog - prints information about dog
+ * print_dog - prints a struct dog
  * @d: struct dog to print
  */
 void print_dog(struct dog *d)
@@ -12,7 +12,7 @@ void print_dog(struct dog *d)
 		return;
 
 	if (d->name == NULL)
-		d->name = "(nill)";
+		d->name = "(nil)";
 	if (d->owner == NULL)
 		d->owner = "(nil)";
 
