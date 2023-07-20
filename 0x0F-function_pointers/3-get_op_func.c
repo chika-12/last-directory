@@ -1,9 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "3-calc.h"
+
 /**
  * get_op_func - returns operator for function operation
+ *
  * @s: parameter
+ *
  * Return: returns operator
  */
 int (*get_op_func(char *s))(int, int)
