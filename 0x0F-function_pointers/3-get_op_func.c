@@ -19,7 +19,7 @@ int (*get_op_func(char *s))(int, int)
 	};
 	int i = 0;
 
-	while (i < 133)
+	while (i < 13)
 	{
 		if (s[0] == ops->op[i])
 			break;
