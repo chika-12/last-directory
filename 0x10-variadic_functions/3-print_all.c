@@ -16,7 +16,7 @@ void print_all(const char * const format, ...)
 	while (format && format[i])
 	{
 		j = 0;
-		while (t_arg[j])
+		while (s_arg[j])
 		{
 			if (s_arg[j] == s_arg[j] && c)
 			{
