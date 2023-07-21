@@ -6,6 +6,8 @@
 #include <stdlib.h>
 /**
  * header - file containing header files
+ * @c: putchar function
+ * Return: 0
  */
 
 int _putchar(char c);
