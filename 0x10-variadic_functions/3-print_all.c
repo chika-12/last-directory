@@ -9,7 +9,7 @@ void print_all(const char * const format, ...)
 {
 	unsigned int i = 0, j, c = 0;
 	char *str;
-	const char t_arg[] = "cifs";
+	const char s_arg[] = "cifs";
 	va_list list;
 
 	va_start(list, format);
@@ -18,7 +18,7 @@ void print_all(const char * const format, ...)
 		j = 0;
 		while (t_arg[j])
 		{
-			if (t_arg[j] == t_arg[j] && c)
+			if (s_arg[j] == s_arg[j] && c)
 			{
 				printf(", ");
 				break;
@@ -47,4 +47,3 @@ void print_all(const char * const format, ...)
 	}
 	printf("\n"), va_end(list);
 }
-
