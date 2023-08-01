@@ -10,19 +10,11 @@ size_t print_listint(const listint_t *h)
 	const listint_t *ptr = h;
 
 	count = 0;
-	if (h == NULL)
+	while (ptr != NULL)
 	{
-		printf("Empty list\n");
-		return (-1);
-	}
-	else
-	{
-		while (ptr != NULL)
-		{
-			count++;
-			printf("%d\n", ptr->n);
-			ptr = ptr->next;
-		}
+		count++;
+		printf("%d\n", ptr->n);
+		ptr = ptr->next;
 	}
 	return (count);
 }
