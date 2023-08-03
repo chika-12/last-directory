@@ -6,7 +6,7 @@
 #include <string.h>
 /**
  * _putchar - prints a singlr character
- * @c:
+ * @c: character
  * Return: 0
  */
 char _putchar(char c);
