@@ -1,9 +1,9 @@
 #include "main.h"
 /**
- * exitWithError - prints to stderr
+ * exitWithError - checks error
  * @message: parameter
  * @exitCode: parameter
- * Return: -1
+ * Return: 0
  */
 void exitWithError(const char *message, int exitCode)
 {
@@ -11,61 +11,58 @@ void exitWithError(const char *message, int exitCode)
 	exit(exitCode);
 }
 /**
- * main - prints from command line
- * @argc: parameter
- * @argv: parameter
+ * copyFile - copies the file
+ * @srcFile: parameter
+ * @destFile: parameter
+ * Return: 0
+ */
+void copyFile(const char *srcFile, const char *destFile)
+{
+	char buffer[1024];
+	ssize_t bytesRead;
+	int src_fd, dest_fd;
+
+	src_fd = open(srcFile, O_RDONLY);
+
+	if (src_fd == -1)
+		exitWithError("Error: Can't read from source file", 98);
+	dest_fd = open(destFile, O_WRONLY |
+		O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP);
+	if (dest_fd == -1)
+	{
+		close(src_fd);
+		exitWithError("Error: Can't write to destination file", 99);
+	}
+	while ((bytesRead = read(src_fd, buffer, sizeof(buffer))) > 0)
+	{
+		ssize_t bytesWritten = write(dest_fd, buffer, bytesRead);
+
+		if (bytesWritten == -1)
+		{
+			close(src_fd);
+			close(dest_fd);
+			exitWithError("Error: Can't write to destination file", 99);
+		}
+	}
+	if (bytesRead == -1)
+	{
+		close(src_fd);
+		close(dest_fd);
+		exitWithError("Error while reading from source file", 100);
+	}
+	if (close(src_fd) == -1 || close(dest_fd) == -1)
+		exitWithError("Error: Can't close file descriptors", 100);
+}
+/**
+ * main - checks file
+ * @argc: argument count
+ * @argv: argument velocity
  * Return: 0
  */
 int main(int argc, char *argv[])
 {
-	int dest_fd, src_fd;
-	char buffer[1024];
-	ssize_t bytes_read, bytes_written;
-
-	const char *file_from = argv[1];
-	const char *file_to = argv[2];
-
 	if (argc != 3)
-	{
-	exitWithError("Usage: cp file_from file_to", 97);
-	}
-
-	src_fd = open(file_from, O_RDONLY);
-	if (src_fd == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
-		exit(98);
-	}
-	dest_fd = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 
-			S_IRUSR | S_IWUSR | S_IRGRP);
-	if (dest_fd == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-		close(src_fd);
-		exit(99);
-	}
-	while ((bytes_read = read(src_fd, buffer, sizeof(buffer))) > 0)
-	{
-		bytes_written = write(dest_fd, buffer, bytes_read);
-		if (bytes_written == -1)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-			close(src_fd);
-			close(dest_fd);
-			exit(99);
-		}
-	}
-	if (bytes_read == -1)
-	{
-		dprintf(STDERR_FILENO, "An error occurred while reading from %s\n", file_from);
-		close(src_fd);
-		close(dest_fd);
-		exit(100);
-	}
-	if (close(src_fd) == -1 || close(dest_fd) == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd\n");
-		exit(100);
-	}
+		exitWithError("Usage: cp source_file destination_file", 97);
+	copyFile(argv[1], argv[2]);
 	return (0);
 }
