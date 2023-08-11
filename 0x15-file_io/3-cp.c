@@ -1,68 +1,67 @@
 #include "main.h"
 /**
- * exitWithError - checks error
- * @message: parameter
- * @exitCode: parameter
+ * check_IO_state - checks file
+ * @state: describes file to be opened
+ * @filename: name of file
+ * @mode: mode of operation
+ * @ptr: descriptor
  * Return: 0
  */
-void exitWithError(const char *message, int exitCode)
+void check_IO_state(int state, int ptr, char *filename, char mode)
 {
-	dprintf(STDERR_FILENO, "%s\n", message);
-	exit(exitCode);
+	if (mode == 'C' && stat == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close ptr %d\n", ptr);
+		exit(100);
+	}
+	else if (mode == 'O' && state == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename);
+		exit(98);
+	}
+	else if (mode == 'W' && state == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename);
+		exit(99);
+	}
 }
 /**
- * copyFile - copies the file
- * @srcFile: parameter
- * @destFile: parameter
- * Return: 0
- */
-void copyFile(const char *srcFile, const char *destFile)
-{
-	char buffer[1024];
-	ssize_t bytesRead;
-	int src_fd, dest_fd;
-
-	src_fd = open(srcFile, O_RDONLY);
-
-	if (src_fd == -1)
-		exitWithError("Error: Can't read from source file", 98);
-	dest_fd = open(destFile, O_WRONLY |
-		O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP);
-	if (dest_fd == -1)
-	{
-		close(src_fd);
-		exitWithError("Error: Can't write to destination file", 99);
-	}
-	while ((bytesRead = read(src_fd, buffer, sizeof(buffer))) > 0)
-	{
-		ssize_t bytesWritten = write(dest_fd, buffer, bytesRead);
-
-		if (bytesWritten == -1)
-		{
-			close(src_fd);
-			close(dest_fd);
-			exitWithError("Error: Can't write to destination file", 99);
-		}
-	}
-	if (bytesRead == -1)
-	{
-		close(src_fd);
-		close(dest_fd);
-		exitWithError("Error while reading from source file", 100);
-	}
-	if (close(src_fd) == -1 || close(dest_fd) == -1)
-		exitWithError("Error: Can't close file descriptors", 100);
-}
-/**
- * main - checks file
+ * main - copies the content of file to file
  * @argc: argument count
- * @argv: argument velocity
- * Return: 0
+ * @argv: arguments velocity
+ * Return: 1
  */
 int main(int argc, char *argv[])
 {
+	int src, dest, n_read = 1024, wrote, close_src, close_dest;
+
+	unsigned int mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
+
+	char buffer[1024];
+
 	if (argc != 3)
-		exitWithError("Usage: cp source_file destination_file", 97);
-	copyFile(argv[1], argv[2]);
+	{
+		dprintf(STDERR_FILENO, "%s", "Usage: cp file_from file_to\n");
+		exit(97);
+	}
+	src = open(argv[1], O_RDONLY);
+	check_IO_stat(src, -1, argv[1], 'O');
+	dest = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, mode);
+	check_IO_stat(dest, -1, argv[2], 'W');
+	while (n_read == 1024)
+	{
+		n_read = read(src, buffer, sizeof(buffer));
+		if (n_read == -1)
+			check_IO_stat(-1, -1, argv[1], 'O');
+		wrote = write(dest, buffer, n_read);
+		if (wrote == -1)
+			check_IO_stat(-1, -1, argv[2], 'W');
+	}
+
+	close_src = close(src);
+	check_IO_stat(close_src, src, NULL, 'C');
+	close_dest = close(dest);
+	check_IO_stat(close_dest, dest, NULL, 'C');
+
 	return (0);
 }
