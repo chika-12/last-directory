@@ -1,4 +1,4 @@
-This directory is for c source code as given in alx school of software engineering
+This directory is for c source code files given by  alx school of software engineering
 
 ~~~
 C is a portable language tha can be used for various purposes which includes
