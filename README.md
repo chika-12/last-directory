@@ -5,6 +5,7 @@ C is a portable language tha can be used for various purposes which includes
 * embeded systems 
 * it helps to understand system architecture
 * for helps for memory management 
+
 Used in many tech industries 
 ~~~
 Directories in this repository includes 
